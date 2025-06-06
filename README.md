@@ -40,7 +40,7 @@
 
 1. **Clone the repo**
    ```bash
-   git clone https://github.com/your-username/journel.git
+   git clone https://github.com/shillari/journel-react.git
    cd journel
 2. **Install dependencies**
    ```bash
