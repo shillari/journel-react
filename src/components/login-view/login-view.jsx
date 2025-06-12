@@ -2,10 +2,10 @@ import { useState } from "react";
 import { Button, FloatingLabel, Image } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import { useDispatch } from "react-redux";
-import {setUsername, setToken} from "../../redux/reducers/user";
+import {setUsername, setToken, setEmail} from "../../redux/reducers/user";
 
 export const LoginView = () => {
-    const [email, setEmail] = useState("");
+    const [email, setEmailInput] = useState("");
     const [password, setPassword] = useState("");
     const apiUrl = 'http://localhost:8081/api/v1'//import.meta.env.JOURNEL_BACKEND_API_URL;
     const dispatch = useDispatch();
@@ -35,6 +35,7 @@ export const LoginView = () => {
                 if (userLogged) {
                     dispatch(setUsername(userLogged));
                     dispatch(setToken(userLogged));
+                    dispatch(setEmail(userLogged))
                 }
             })
             .catch(err => {
@@ -59,7 +60,7 @@ export const LoginView = () => {
                         type="email" 
                         required
                         value={email}
-                        onChange={e => setEmail(e.target.value)}
+                        onChange={e => setEmailInput(e.target.value)}
                         placeholder="email@example.com" />
                     </FloatingLabel>
                 </Form.Group>

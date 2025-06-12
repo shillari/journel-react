@@ -3,6 +3,7 @@
   --default-color-opacity-light: #ba815350;
   --default-color: #ba8153;
   --default-color-card: #f8f4ee;
+  --color-gray: rgb(156, 156, 156);
 }
 
 html, body, #main, #root {
@@ -43,6 +44,7 @@ html, body, #main, #root {
 
 .card-default {
   background-color: var(--default-color-card);
+  border: 1px solid var(--color-gray);
 }
 
 .clamp-text {
@@ -57,6 +59,52 @@ html, body, #main, #root {
   background-color: var(--default-color-card);
 }
 
+.tag-wrapper {
+  display: inline-block;
+  margin-inline: 5px;
+  border: 1px dotted var(--color-gray);
+  padding-inline-start: 3px;
+  border-radius: 3px;
+  background-color: white;
+}
+
+.tag-delete {
+  padding-inline: 3px;
+  padding-block: 0;
+  background-color: transparent;
+  border-radius: 5px;
+}
+
+.tag-input {
+  background-color: white !important;
+  border: 1px solid gray !important;
+  margin-top: 15px;
+  min-width: 120px;
+  margin-inline: 8px;
+}
+
+.ReactTags__selected {
+  height: 70px;
+  min-height: 70px;
+}
+
+.tag-container {
+  height: 70px;
+  overflow-y: auto;
+  border: 1px solid var(--color-gray);
+  background-color: var(--default-color-card) !important;
+  border-radius: 2px;
+  margin-inline: 8px;
+  padding-block: 8px;
+  margin-top: 15px;
+}
+
+.ReactTags__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
 /******* LOGIN *******/
 .login-form {
   background-color: var(--default-color-opacity-dark);
@@ -69,7 +117,7 @@ html, body, #main, #root {
 
 /******* SIDEMENU *******/
 .sidemenu {
-  width: 280px;
+  width: 230px;
   height: 100vh;
   background-color: var(--default-color-opacity-light);
 }

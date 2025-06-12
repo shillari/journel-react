@@ -10,7 +10,6 @@ export const NavbarView = () => {
 
   const toggleSideMenu = (e) => {
     e.preventDefault();
-    console.log("toggle clicked")
     dispatch(toggleSlidebar());
   }
 
@@ -26,19 +25,21 @@ export const NavbarView = () => {
             </button>
           </Navbar.Text>
             
-            <Navbar.Brand href="#home">
+            <Navbar.Brand href="/">
               <Image className="h-10" src="logo.svg" />
             </Navbar.Brand>
             <Navbar.Collapse className="justify-content-end">
-              <Form className="d-flex">
+              <Form className="d-flex" size="sm">
                   <Form.Control
                     type="search"
                     placeholder="Search"
-                    className="me-2"
+                    className="me-2 !p-1"
                     aria-label="Search"
                     size="sm"
                   />
-                  <Button className="btn-default" size="sm" type="submit">Search</Button>
+                  <Button className="!bg-transparent !border-0 !rounded-full !p-0" size="sm" type="submit">
+                    <span className="material-icons icon-default hover:!text-white md-18">search</span>
+                  </Button>
                 </Form>
                 <Navbar.Text className="bg-none ml-5">
                   <button className="bg-transparent cursor-pointer p-0 px-2 border-0 rounded-lg" variant="light">
