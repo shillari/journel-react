@@ -33,6 +33,7 @@ html, body, #main, #root {
   background-color: var(--default-color);
   color: white;
   border-color: var(--default-color);
+  box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .btn-default:hover,
@@ -90,6 +91,7 @@ html, body, #main, #root {
 
 .tag-container {
   height: 70px;
+  min-width: 100px;
   overflow-y: auto;
   border: 1px solid var(--color-gray);
   background-color: var(--default-color-card) !important;
@@ -117,7 +119,49 @@ html, body, #main, #root {
 
 /******* SIDEMENU *******/
 .sidemenu {
-  width: 230px;
+  min-width: 180px;
+  max-width: 180px;
   height: 100vh;
   background-color: var(--default-color-opacity-light);
+}
+
+.wrap-username {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+/******** TABS ********/
+.nav-link {
+  background-color: var(--default-color-opacity-light);
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.nav-link,
+.nav-link:active,
+.nav-link:hover {
+  color: black;
+}
+
+.nav-item {
+  margin-inline: 2px;
+}
+
+.nav-link.active {
+  background-color: var(--default-color) !important;
+}
+
+.signup-link {
+  background-color: var(--default-color);
+  padding: 3px;
+  padding-inline: 5px;
+  border-radius: 5px;
+  border: 1px solid black;
+}
+
+.signup-link:hover {
+  background-color: var(--default-color-opacity-dark);
 }
