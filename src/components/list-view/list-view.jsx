@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { CardView } from "../card-view/card-view";
 import { Link } from "react-router";
-import { Form, Spinner } from "react-bootstrap";
+import { Form, Pagination, Spinner } from "react-bootstrap";
 import { useFetchWithAuth } from "../../service/fetchWithAuth";
+import { PaginationEntriesView } from "../pagination-view/pagination-entries-view";
 
 export const ListView = ( { userId}) => {
   const fetchWithAuth = useFetchWithAuth();
@@ -10,20 +11,38 @@ export const ListView = ( { userId}) => {
   const [loading, setLoading] = useState(true);
   const [showFilter, setShowFilter] = useState(false);
   const [filter, setFilter] = useState('');
+  const [totalElements, setTotalElements] = useState(0);
+  const [totalPages, setTotalPages] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
+  const pagItems = [];
 
   useEffect(() => {
     console.log(showFilter)
     const loadEntries = async () => {
       try {
+        {/*
         const response = await fetchWithAuth(`/entry/entries?userId=${userId}`, {
           method: "GET",
           headers: {
               "Content-Type": "application/json",
           }
         });
+        */ }
 
-        setEntries(response);
-        setLoading(false);
+        const response = await fetchWithAuth(`/entry/entries/page?userId=${userId}`, {
+          method: "GET",
+          headers: {
+              "Content-Type": "application/json",
+          }
+        });
+
+        if (response) {
+          setEntries(response.entries);
+          setTotalElements(response.totalElements);
+          setTotalPages(response.totalPages);
+          setLoading(false);
+        }
+        
       } catch (err) {
         console.log(err);
         setLoading(false);
@@ -31,6 +50,25 @@ export const ListView = ( { userId}) => {
     }
     loadEntries();
   }, []);
+
+  const onPageChange = async (page) => {
+    setLoading(true);
+    setCurrentPage(page);
+
+    const response = await fetchWithAuth(`/entry/entries/page?userId=${userId}&page=${page-1}`, {
+      method: "GET",
+      headers: {
+          "Content-Type": "application/json",
+      }
+    });
+
+    if (response) {
+      setEntries(response.entries);
+      setTotalElements(response.totalElements);
+      setTotalPages(response.totalPages);
+      setLoading(false);
+    }
+  }
 
   const onDelete = (id) => {
     setEntries(entries => entries.filter(entry => entry.id !== id));
@@ -53,6 +91,18 @@ export const ListView = ( { userId}) => {
     }
 
     setEntries(sorted);
+  }
+
+  for (let page = totalPages; page <= totalPages; page++) {
+    pagItems.push(
+      <Pagination.Item
+        key={page}
+        active={page === currentPage}
+        onClick={() => setcu}
+      >
+        {page}
+      </Pagination.Item>
+    )
   }
 
   return (
@@ -96,9 +146,7 @@ export const ListView = ( { userId}) => {
                 <span className="material-icons md-18">add</span>
               </button>
             </Link>
-            {entries.map(entry => {
-              return <CardView key={entry.id} entry={entry} onDelete={onDelete}></CardView>
-            })}
+            <PaginationEntriesView entries={entries} totalPages={totalPages} currentPage={currentPage} onPageChange={(page) => onPageChange(page)} onDelete={onDelete} />
           </>
         }
       </div>

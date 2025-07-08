@@ -29,6 +29,12 @@ html, body, #main, #root {
   font-size: 30px;
 }
 
+.page-link {
+  background-color: var(--default-color) !important;
+  color: white;
+  border-color: var(--default-color-card) !important;
+}
+
 .btn-default {
   background-color: var(--default-color);
   color: white;
