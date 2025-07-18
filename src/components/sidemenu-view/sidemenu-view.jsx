@@ -53,7 +53,7 @@ export const SideMenu = ({user, photo}) => {
       <div className="sidemenu shadow-md transition-all rounded-b-lg">
         <div className="flex flex-col justify-center items-center ">
           <div className="w-32 h-32 rounded-full mt-3 bg-gray-200 border-1 ">
-            <img className="rounded-full w-full h-full object-cover" src={photo ? photo : "user-default.png"} />
+            <img className="rounded-full w-full h-full object-cover" src={photo ? photo : "assets/user-default.png"} />
           </div>
           <span className="font-bold wrap-username px-3 text-shadow-lg">{user}</span>
         </div>

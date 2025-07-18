@@ -34,7 +34,7 @@ export const NavbarView = ({user,}) => {
           </Navbar.Text>
             
             <Navbar.Brand href="/">
-              <Image className="h-10" src="logo.svg" />
+              <Image className="h-10" src="assets/logo.svg" />
             </Navbar.Brand>
             <Navbar.Collapse className="justify-content-end">
               <div className="search-bar">
