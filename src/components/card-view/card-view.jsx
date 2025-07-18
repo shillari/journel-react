@@ -27,7 +27,7 @@ export const CardView = ({entry, onDelete}) => {
 
   return (
     <>
-      <div className="flex align-middle card-default w-full max-w-2xl h-50 p-2 rounded-lg border-1 shadow my-1">
+      <div className="flex align-middle card-default w-full max-w-2xl h-50 p-2 rounded-lg border-1 shadow my-1 mb-3">
        {/*<div className="w-32 h-32 bg-black m-2 shrink-0"></div> */} 
        <Modal show={show} onHide={() => setShow(false)}>
         <Modal.Header closeButton>Delete entry</Modal.Header>

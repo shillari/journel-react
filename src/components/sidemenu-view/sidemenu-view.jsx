@@ -3,48 +3,56 @@ import { Link, useNavigate } from "react-router";
 import { setEmail, setId, setPhoto, setUsername } from "../../redux/reducers/user";
 import { Button } from "react-bootstrap";
 import { useFetchWithAuth } from "../../service/fetchWithAuth";
+import { useState } from "react";
+import Calendar from "react-calendar";
 
 export const SideMenu = ({user, photo}) => {
   const fetchWithAuth = useFetchWithAuth();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [date, setDate] = useState(new Date());
 
   const logout = async (e) => {
     e.preventDefault();
 
     try {
       const response = await fetchWithAuth(`/auth/logout`, {
-      method: "POST",
-      headers: {
-          "Content-Type": "application/json"
-      },
-    });
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+      });
 
-    if (response) {
-      const data = {
-        id: null,
-        username: null,
-        email: null,
-        photoUrl: null
+      if (response) {
+        const data = {
+          id: null,
+          username: null,
+          email: null,
+          photoUrl: null
+        }
+
+        dispatch(setUsername(data));
+        dispatch(setPhoto(data));
+        dispatch(setEmail(data));
+        dispatch(setId(data));
+        
+        navigate('/');
       }
-
-      dispatch(setUsername(data));
-      dispatch(setPhoto(data));
-      dispatch(setEmail(data));
-      dispatch(setId(data));
-      
-      navigate('/');
-    }
     } catch (error) {
       console.log(error);
     }
   }
 
+  const oncn = (value) => {
+    console.log(value);
+    setDate(value)
+  }
+
   return (
     <>
-      <div className="sidemenu shadow-md transition-all">
-        <div className="flex flex-col justify-center items-center mt-7">
-          <div className="w-32 h-32 rounded-full bg-gray-200 border-1 ">
+      <div className="sidemenu shadow-md transition-all rounded-b-lg">
+        <div className="flex flex-col justify-center items-center ">
+          <div className="w-32 h-32 rounded-full mt-3 bg-gray-200 border-1 ">
             <img className="rounded-full w-full h-full object-cover" src={photo ? photo : "user-default.png"} />
           </div>
           <span className="font-bold wrap-username px-3 text-shadow-lg">{user}</span>
@@ -72,7 +80,18 @@ export const SideMenu = ({user, photo}) => {
             </span>
           </Button>
         </div>
+        {/* 
         <hr></hr>
+        <div className="max-w-full m-1 hidden md:block">
+          <Calendar onChange={(value) => oncn(value)} 
+            value={date}  
+            
+            formatShortWeekday={(locale, date) =>
+              date.toLocaleDateString(locale, { weekday: 'narrow' })
+            }
+          />
+        </div>
+        */}
       </div>
     </>
   );

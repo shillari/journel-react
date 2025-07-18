@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import {setUsername, setEmail, setId, setPhoto} from "../../redux/reducers/user";
 import { useFetchWithAuth } from "../../service/fetchWithAuth";
 import { AlertAutoDismiss } from "../../common/AlertAutoDismiss";
+import { collapseSidebar } from "../../redux/reducers/sidebarSlice";
 
 export const LoginView = () => {
     const fetchWithAuth = useFetchWithAuth();
@@ -37,6 +38,7 @@ export const LoginView = () => {
                 dispatch(setPhoto(response));
                 dispatch(setEmail(response));
                 dispatch(setId(response));
+                dispatch(collapseSidebar());
             }
         } catch (err) {
             console.log(err);
