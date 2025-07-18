@@ -120,6 +120,7 @@ html, body, #main, #root {
 
 /******* NAVBAR *******/
 .navbar {
+  z-index: 55;
   background-color: var(--default-color-opacity-dark);
 }
 
@@ -129,6 +130,11 @@ html, body, #main, #root {
   max-width: 180px;
   height: 100vh;
   background-color: var(--default-color-opacity-light);
+}
+
+.sidemenu-view {
+  position: relative;
+  z-index: 1;
 }
 
 .wrap-username {
@@ -170,4 +176,64 @@ html, body, #main, #root {
 
 .signup-link:hover {
   background-color: var(--default-color-opacity-dark);
+}
+
+/******** CALENDAR ********/
+.react-calendar {
+  background-color: var(--default-color-card) !important;
+  border-radius: 10px;
+  max-width: 200px !important;
+  max-height: 200px;
+  padding-inline: 3px;
+}
+
+.react-calendar__navigation {
+  display: flex;
+  max-width: 200px !important;
+}
+
+.react-calendar__navigation__arrow,
+.react-calendar__navigation__label,
+.react-calendar__month-view__days__day {
+  padding: 0;
+  background-color: transparent;
+}
+
+.react-calendar__viewContainer {
+  max-width: 180px !important;
+  max-height: 150px;
+}
+
+.react-calendar__tile--now {
+  background: var(--default-color);
+  color: white;
+  font-weight: bold;
+}
+
+@media screen and (max-width: 700px) {
+  .sidemenu {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    min-width: 100vw;
+    height: 50vh;
+    
+    background-image: linear-gradient(var(--default-color-opacity-dark), var(--default-color));
+  }
+
+  .sidemenu-view {
+    position: fixed;
+    top: 4;
+    left: 0;
+    width: 100vw;
+    height: 50vh;
+    
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .search-bar {
+    display: none;
+  }
 }

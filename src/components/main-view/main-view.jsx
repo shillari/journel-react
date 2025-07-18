@@ -10,7 +10,9 @@ export const MainView = ({user, photo}) => {
     <div className="flex flex-col h-screen overflow-hidden">
       <NavbarView user={user} />
       <div className="flex flex-1 overflow-hidden">
-        {!isCollapse && <SideMenu user={user} photo={photo} />}
+        <div className={(isCollapse) ? 'hidden' : 'sidemenu-view'}>
+          {!isCollapse && <SideMenu user={user} photo={photo} />}
+        </div>
         <div className="flex-1 overflow-y-auto p-4">
           <Outlet />
         </div>

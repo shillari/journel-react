@@ -37,24 +37,26 @@ export const NavbarView = ({user,}) => {
               <Image className="h-10" src="logo.svg" />
             </Navbar.Brand>
             <Navbar.Collapse className="justify-content-end">
-              <Form onSubmit={handleSearch} className="d-flex" size="sm">
-                <Form.Group>
-                  <InputGroup>
-                    <Form.Control
-                      value={searchText}
-                      onChange={(e) => setSearchText(e.target.value)}
-                      type="search"
-                      placeholder="Search tag"
-                      className="!p-1"
-                      aria-label="Search"
-                      size="sm"
-                    />
-                    <Button className="bg-white border-1 !border-gray-200 " variant="outline-secondary" size="sm" type="submit">
-                      <span className="material-icons-outlined text-gray-700 hover:!text-gray-500 md-18">search</span>
-                    </Button>
-                  </InputGroup>
-                </Form.Group>
-              </Form>
+              <div className="search-bar">
+                <Form onSubmit={handleSearch} className="d-flex">
+                  <Form.Group>
+                    <InputGroup>
+                      <Form.Control
+                        value={searchText}
+                        onChange={(e) => setSearchText(e.target.value)}
+                        type="search"
+                        placeholder="Search tag"
+                        className="!p-1"
+                        aria-label="Search"
+                        size="sm"
+                      />
+                      <Button className="bg-white border-1 !border-gray-200 " variant="outline-secondary" size="sm" type="submit">
+                        <span className="material-icons-outlined text-gray-700 hover:!text-gray-500 md-18">search</span>
+                      </Button>
+                    </InputGroup>
+                  </Form.Group>
+                </Form>
+              </div>
             </Navbar.Collapse>
           </>) : (<><Navbar.Collapse className="justify-content-end space-x-2">
               <Navbar.Text>
