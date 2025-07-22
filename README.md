@@ -2,6 +2,9 @@
 
 **Journel** is a modern journaling app built with React and Vite. Users can create, edit, and delete personal entries, attach photos, categorize their thoughts, and organize them using tags. It also features user authentication and profile management.
 
+> ✅ **Live App**: [https://journel-react.netlify.app](https://journel-react.netlify.app)  
+> 📸 **Profile photos** are stored securely using **Google Firebase Storage**
+
 ---
 
 ## ✨ Features
@@ -11,7 +14,6 @@
   - Each entry includes:
     - Title
     - Text
-    - Optional photo
     - Tags (persisted via Redis)
     - Category
 - 🧑‍💼 **User profile management**
@@ -33,6 +35,7 @@
 | React Redux       | 9.2.0     | React bindings for Redux            |
 | React Router      | 7.6.2     | Declarative routing                 |
 | Tailwind CSS      | 4.1.8     | Utility-first CSS framework         |
+| Firebase Storage  | 11.9.1    | Cloud storage for profile photos    |
 
 ---
 
