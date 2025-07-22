@@ -13,11 +13,13 @@
 - 📝 **Create, edit, and delete entries**
   - Each entry includes:
     - Title
+    - Date
     - Text
     - Tags (persisted via Redis)
     - Category
 - 🧑‍💼 **User profile management**
-  - Update name and profile photo
+  - Update name, profile photo and birthday
+  - Change password
   - Delete account
 - 📌 **Persistent user session** using Redux Toolkit
 - 💡 **Responsive UI** with Tailwind CSS
