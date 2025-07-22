@@ -88,7 +88,7 @@ export const SignupView = () => {
       <Form noValidate validated={validated} className="login-form p-4 rounded-xl shadow-md w-full max-w-sm"
           onSubmit={signup}>
         <Form.Group className="flex flex-col items-center w-full justify-center mt-4">
-          <Image className="w-full/50 mb-5" src="assets/logo.svg" />
+          <Image className="w-full/50 mb-5" src="logo.svg" />
           <Form.Label className="text-lg font-semibold">Create account</Form.Label>
         </Form.Group>
         <Form.Group className="mb-3">

@@ -11,7 +11,7 @@ export const ProfileView = ({db, storage, user, userId, emailSaved}) => {
   const [usernameInput, setUsernameInput] = useState("");
   const [email, setEmail] = useState("");
   const [birthday, setBirthday] = useState(new Date().toISOString().split('T')[0]);
-  const [profileImg, setProfileImg] = useState('assets/user-default.png');
+  const [profileImg, setProfileImg] = useState('user-default.png');
   const [selectedFile, setSelectedFile] = useState(null);
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
@@ -115,7 +115,7 @@ export const ProfileView = ({db, storage, user, userId, emailSaved}) => {
         <Form className="w-full max-w-2xl" onSubmit={updateUser}>
         <Form.Group className="mb-3 flex flex-col justify-center items-center">
           <div className="flex">
-            <Image className="bg-gray-100 w-40 h-40 rounded-full border-1 shadow-2xl shadow-stone-500 object-cover" src={profileImg ? profileImg : "assets/user-default.png"} alt="profile preview" />
+            <Image className="bg-gray-100 w-40 h-40 rounded-full border-1 shadow-2xl shadow-stone-500 object-cover" src={profileImg ? profileImg : "user-default.png"} alt="profile preview" />
             <Form.Control
                 type="file"
                 id="profilePhotoInput"

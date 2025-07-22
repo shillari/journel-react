@@ -56,7 +56,7 @@ export const LoginView = () => {
             <Form className="login-form p-4 rounded-xl shadow-md w-full max-w-sm"
                 onSubmit={login}>
                 <Form.Group className="flex flex-col items-center w-full justify-center mt-4">
-                    <Image className="w-full/50 mb-5" src="assets/logo.svg" />
+                    <Image className="w-full/50 mb-5" src="logo.svg" />
                     <Form.Label className="text-lg font-semibold">Login</Form.Label>
                 </Form.Group>
                 <Form.Group className="mb-3">
