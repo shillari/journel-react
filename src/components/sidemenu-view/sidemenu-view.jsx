@@ -4,9 +4,9 @@ import { setEmail, setId, setPhoto, setUsername } from "../../redux/reducers/use
 import { Button } from "react-bootstrap";
 import { useFetchWithAuth } from "../../service/fetchWithAuth";
 import { useState } from "react";
-import Calendar from "react-calendar";
+import { signOut } from "firebase/auth";
 
-export const SideMenu = ({user, photo}) => {
+export const SideMenu = ({user, photo, auth}) => {
   const fetchWithAuth = useFetchWithAuth();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -36,6 +36,14 @@ export const SideMenu = ({user, photo}) => {
         dispatch(setEmail(data));
         dispatch(setId(data));
         
+        await signOut(auth)
+        .then(() => {
+          console.log("Logged out from Firebase");
+        })
+        .catch((error) => {
+          console.error("Error logging out from Firebase", error);
+        });
+
         navigate('/');
       }
     } catch (error) {

@@ -6,8 +6,9 @@ import {setUsername, setEmail, setId, setPhoto} from "../../redux/reducers/user"
 import { useFetchWithAuth } from "../../service/fetchWithAuth";
 import { AlertAutoDismiss } from "../../common/AlertAutoDismiss";
 import { collapseSidebar } from "../../redux/reducers/sidebarSlice";
+import { signInWithCustomToken } from "firebase/auth";
 
-export const LoginView = () => {
+export const LoginView = ({auth}) => {
     const fetchWithAuth = useFetchWithAuth();
     const [email, setEmailInput] = useState("");
     const [password, setPassword] = useState("");
@@ -39,6 +40,15 @@ export const LoginView = () => {
                 dispatch(setEmail(response));
                 dispatch(setId(response));
                 dispatch(collapseSidebar());
+  
+                await signInWithCustomToken(auth, response.firebaseToken)
+                .then(() => {
+                    console.log("Signed in to Firebase!");
+                })
+                .catch((error) => {
+                    console.error("Firebase sign-in error:", error);
+                });
+
             }
         } catch (err) {
             console.log(err);

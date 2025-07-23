@@ -66,7 +66,6 @@ export const SignupView = () => {
         body: JSON.stringify(data)
       });
 
-      console.log(response)
       if (response) {
         dispatch(setUsername(response));
         dispatch(setPhoto(response));

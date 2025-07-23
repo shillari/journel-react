@@ -3,7 +3,7 @@ import { SideMenu } from "../sidemenu-view/sidemenu-view"
 import { useSelector } from "react-redux";
 import { NavbarView } from "../navbar/navbar-view";
 
-export const MainView = ({user, photo}) => {
+export const MainView = ({user, photo, auth}) => {
   const isCollapse = useSelector((state) => state.sidebar.isCollapse);
 
   return (
@@ -11,7 +11,7 @@ export const MainView = ({user, photo}) => {
       <NavbarView user={user} />
       <div className="flex flex-1 overflow-hidden">
         <div className={(isCollapse) ? 'hidden' : 'sidemenu-view'}>
-          {!isCollapse && <SideMenu user={user} photo={photo} />}
+          {!isCollapse && <SideMenu user={user} photo={photo} auth={auth} />}
         </div>
         <div className="flex-1 overflow-y-auto p-4">
           <Outlet />

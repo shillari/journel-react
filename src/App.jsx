@@ -12,6 +12,7 @@ import { EditEntry } from "./components/create-edit-view/edit-entry";
 import { SettingsView } from "./components/settings/settings-view";
 import { SignupView } from "./components/signup-view,jsx/signup-view";
 import { SearchView } from "./components/navbar/search-view";
+import { getAuth } from "firebase/auth";
 
 function App() {
   const user = useSelector((state) => state.user.username);
@@ -32,17 +33,18 @@ function App() {
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
   const storage = getStorage(app);
+  const authFirebase = getAuth();
 
   const router = createBrowserRouter([
     { path: "/signup", element: <SignupView /> },
     {
       path: "/",
       element: user ? 
-          <MainView user={user} photo={photo} />
-      : <LoginView />,
+          <MainView user={user} photo={photo} auth={authFirebase}/>
+      : <LoginView auth={authFirebase} />,
       children: [
         { path: "/", element: <ListView userId={userId}/> },
-        { path: "/settings", element: <SettingsView db={db} storage={storage} user={user} userId={userId} emailSaved={emailSaved} /> },
+        { path: "/settings", element: <SettingsView db={db} storage={storage} user={user} userId={userId} emailSaved={emailSaved} auth={authFirebase} /> },
         { path: "/entry/new", element: <CreateEntry userId={userId} /> },
         { path: "/entry/:entryId/edit", element: <EditEntry userId={userId} /> },
         { path: "/search/tag", element: <SearchView userId={userId} /> },

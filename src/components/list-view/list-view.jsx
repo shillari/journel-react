@@ -17,7 +17,7 @@ export const ListView = ( { userId}) => {
   const pagItems = [];
 
   useEffect(() => {
-    console.log(showFilter)
+
     const loadEntries = async () => {
       try {
         {/*

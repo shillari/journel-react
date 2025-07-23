@@ -6,7 +6,7 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { doc, setDoc } from "firebase/firestore";
 import { useFetchWithAuth } from "../../service/fetchWithAuth";
 
-export const ProfileView = ({db, storage, user, userId, emailSaved}) => {
+export const ProfileView = ({db, storage, user, userId, emailSaved, auth}) => {
   const fetchWithAuth = useFetchWithAuth();
   const [usernameInput, setUsernameInput] = useState("");
   const [email, setEmail] = useState("");
@@ -15,6 +15,7 @@ export const ProfileView = ({db, storage, user, userId, emailSaved}) => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
+  const authFirebase = auth;
 
   useEffect(() => {
     if (!user) {
@@ -47,19 +48,27 @@ export const ProfileView = ({db, storage, user, userId, emailSaved}) => {
     let urlSaved = profileImg;
 
     if (selectedFile) {
+      const currentUser = authFirebase.currentUser;
+
+      if (!currentUser) {
+        console.error("User not authenticated");
+        return;
+      }
+
+      const userUid = currentUser?.uid;
       const fileName = email.split('@')[0];
       const extension = selectedFile.name.split('.').pop(); 
       
-      const storageRef = ref(storage, `profile/${fileName}_${userId}_profile_photo.${extension}`);
+      const storageRef = ref(storage, `profile/${String(userUid)}/${fileName}_${userId}_profile_photo.${extension}`);
 
       await uploadBytes(storageRef, selectedFile);
 
       const url = await getDownloadURL(storageRef);
-      await setDoc(doc(db, "users", String(userId)), {
+      await setDoc(doc(db, "users", String(userUid)), {
         email: email,
         profilePhoto: url,
       }, { merge: true });
-      console.log('URL: '+ url)
+
       setProfileImg(url);
       urlSaved = url;
     }

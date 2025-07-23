@@ -5,7 +5,6 @@ export const TagInput = ({tags, setTags}) => {
   const [inputValue, setInputValue] = useState("");
 
   const handleDelete = (i) => {
-    console.log("index: " + i);
     setTags(tags.filter((tag, index) => index !== i));
   };
 
